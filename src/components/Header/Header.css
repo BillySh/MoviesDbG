@@ -1,0 +1,19 @@
+.navBar{
+    @apply bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800
+}
+
+.button{
+    @apply block py-2 px-3 text-blue-500 items-end
+}
+
+.wrapper{
+    @apply  justify-between items-center 
+}
+
+.buttons{
+    @apply justify-between items-center flex
+}
+
+.title{
+    @apply font-bold text-blue-300 items-center py-2 px-3
+}
