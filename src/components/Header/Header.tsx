@@ -9,6 +9,9 @@ const Header =() =>{
             <div className="wrapper">
                 <ul className="buttons">
                     <p className="title">
+                        <div className="iconContainer">
+                            <img className="moviIcon" src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png"></img>
+                        </div>
                         Movie DB
                     </p>
                     <li className="button">
@@ -22,6 +25,9 @@ const Header =() =>{
                     </li>
                     <li className="button">
                         <Link to={ROUTES.NOWP}>Now Playing</Link>
+                    </li>
+                    <li className="button">
+                        <Link to={ROUTES.FAV}>Favorites</Link>
                     </li>
                 </ul>
             </div>

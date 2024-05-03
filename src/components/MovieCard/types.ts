@@ -9,5 +9,5 @@ export interface IMovieCard{
 
 export interface IGenre{
     id: number;
-    namee: string;
+    name: string;
 }

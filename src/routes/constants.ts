@@ -4,4 +4,5 @@ export const ROUTES = {
     TOPRATED:'/toprated',
     NOWP:'/nowp',
     SHOW: '/show/',
+    FAV:'/fav/',
 }

@@ -1,15 +1,20 @@
 .movieCardCon{
-    @apply flex-none
+    @apply flex-none overflow-hidden
 }
 
 .firstRow{
-    @apply flex overflow-x-auto
+    @apply flex  overflow-x-auto shadow-inner
 }
 
 .frC{
-    @apply text-blue-300 font-bold py-2 px-3
+    @apply text-blue-300 font-bold py-2 px-3 bg-slate-800 shadow-inner w-full
 }
 
 .background{
-    @apply bg-neutral-900
+    @apply bg-gray-700 shadow-inner
 }
+
+.carouselContainer{
+    @apply h-96 
+}
+

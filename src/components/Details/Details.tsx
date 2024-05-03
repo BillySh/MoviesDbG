@@ -1,22 +1,23 @@
 import React from 'react';
-import { IMovieCard } from './types';
+import {  IDetails } from './types';
 import { IMAGE_SOURCE } from '../../constants/moviesMock';
 import  genre  from '../../constants/genres.json';
-import './MovieCard.css';
 import { useNavigate } from 'react-router-dom';
 import {ROUTES} from '../../routes/constants'
 
 
-const MovieCard: React.FC<IMovieCard> = ({
+const MovieCard: React.FC<IDetails> = ({
     title,
-    genreId,
-    movieId,
-    votesAverage,
-    posterPath,
+    budget,
+    id,
+    original_language,
+    overview,
+
+
 })=>{
     const navigate =useNavigate(); //Hook 
     //State
-    const poster = IMAGE_SOURCE + posterPath;
+    //const poster = IMAGE_SOURCE + posterPath;
     //Functions
     const getGenre = (genreId: number): string =>{
         const key= Object.values(genre.genres).find(genre => genre.id === genreId);
@@ -31,22 +32,20 @@ const MovieCard: React.FC<IMovieCard> = ({
     }
     //Return 
     return(
+    <div className=''>
         
-        <div className='containerFull' onClick= {()=>{navigateMovies(movieId,title)}}>
-            
-            <div className='imageContainer'>
-                <img className='image' src={poster} alt='poster'/>
-                <div >
-                    <div className='textContainer'>
-                        <div className='genre'>
-                                {getGenre(genreId)}
-                        </div>
-                        <p className='title'>{title}</p>
-                        <p className='votes'>{votesAverage} /10</p>
-                    </div>
+        <div >
+            <div className='detailsContainer'>
+                <div className='genre'>
+                        {getGenre(id)}
                 </div>
+                <p className='overview'>{overview}</p>
+                <p className='budget'>{budget}</p>
+                <p className='title'>{title}</p>
+                <p className='original_language'>{original_language}</p>
             </div>
         </div>
+    </div>
     )
 }
 

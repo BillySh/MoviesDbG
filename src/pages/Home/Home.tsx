@@ -1,125 +1,173 @@
 import React from 'react';
 import { MovieCard } from '../../components/MovieCard';
-import { movies } from '../../constants/moviesMock';
 import './Home.css';
+import {getPopular,getMain,getTopRated,getUpcoming} from '../../services'
+import { IMovieCard } from "../../components/MovieCard/types";
+import { IMovieResponse } from "./types";
+import { useEffect,useState } from "react";
+import { Carousel } from "flowbite-react";
+
 
 
 
 const Home=() => {
+
+  //Const Variables
+  const [movies_Pop, setMovies] = useState<IMovieResponse[]>([]);
+  const [moviesMain, setMoviesMain] = useState<IMovieResponse[]>([]);
+  const [moviesUpcoming,setMoviesUp] = useState<IMovieResponse[]>([]);
+  const [moviesTopR, setMoviesTop]=useState<IMovieResponse[]>([]);
+  const [isLoading,setIsLoading]=useState<boolean>(false);
+  const [errorOnRequest,setErrorOnRequest]=useState<boolean>(false);
+  //Functions
+
+  const getPopularMovies = async () =>{
+    await getPopular().then((data)=>{
+        if (data && data.data){
+            console.log(data.data.source)
+            setMovies(data.data.results);
+        }
+    }).catch((err) =>{
+        console.log(err);//Algun fallo depende de que falló
+    })
+  };
+
+  const getMainMovies = async () =>{
+    await getMain().then((data)=>{
+        if (data && data.data){
+            console.log(data.data.source)
+            setMoviesMain(data.data.results);
+        }
+    }).catch((err) =>{
+        console.log(err);//Algun fallo depende de que falló
+    })
+  };
+
+  const getUpcomingMovies = async () =>{
+    await getUpcoming().then((data)=>{
+        if (data && data.data){
+            console.log(data.data.source)
+            setMoviesUp(data.data.results);
+        }
+    }).catch((err) =>{
+        console.log(err);//Algun fallo depende de que falló
+    })
+  };
+
+  const getTopMovies = async () =>{
+    await getTopRated().then((data)=>{
+        if (data && data.data){
+            console.log(data.data.source)
+            setMoviesTop(data.data.results);
+        }
+    }).catch((err) =>{
+        console.log(err);//Algun fallo depende de que falló
+    })
+  };
+
+
+  //Use Effect
+  useEffect(()=>{
+    setIsLoading(true);
+    getMainMovies();
+    getPopularMovies();
+    getUpcomingMovies();
+    getTopMovies();
+    setIsLoading(false);
+  },[]);
+
+  //Return 
     return (
+      
       <div className='background'>
-        <p className='frC'>Most recent</p>
+        <br></br>
+        <div className="carouselContainer">
+          <Carousel>
+            <img src="https://theregoesmykokoro.files.wordpress.com/2016/03/ogp.png" alt="..." />
+            <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/11/flcl-featured-Cropped.jpg" alt="..." />
+            <img src="https://www.gematsu.com/wp-content/uploads/2024/04/Mushoku-Tensei-QoM_04-16-24.jpg" alt="..." />
+            <img src="https://billyelliotthemusical.com/content/themes/billy-elliot-2016/build/images/hero-small1.jpg" alt="..." />
+            <img src="https://images3.alphacoders.com/132/1320392.jpeg" alt="..." />
+          </Carousel>
+        </div>
+        <br></br>
+        <div></div>
+        <p className='frC'>Popular</p>
         <div className='firstRow'>
             <div className='movieCardCon'>
+              {isLoading&&<div>Loading...</div>}
+              {movies_Pop?.length>0 &&
+              movies_Pop.map((movie)=>(
               <MovieCard
-              movieId={movies[0].id}
-              posterPath= {movies[0].poster_path}
-              title= {movies[0].title}
-              votesAverage={movies[0].vote_average}
-              genreId={movies[0].genre_ids[0]}
+              key={movie.id}
+              movieId={movie.id}
+              posterPath={movie.poster_path}
+              title={movie.title}
+              votesAverage={movie.vote_average}
+              genreId={movie.genre_ids[0]}
               />
-
-              <MovieCard
-              movieId={movies[1].id}
-              posterPath= {movies[1].poster_path}
-              title= {movies[1].title}
-              votesAverage={movies[1].vote_average}
-              genreId={movies[1].genre_ids[1]}
-              />
-              <MovieCard
-              movieId={movies[2].id}
-              posterPath= {movies[2].poster_path}
-              title= {movies[2].title}
-              votesAverage={movies[2].vote_average}
-              genreId={movies[2].genre_ids[2]}
-              />
-              <MovieCard
-              movieId={movies[3].id}
-              posterPath= {movies[3].poster_path}
-              title= {movies[3].title}
-              votesAverage={movies[3].vote_average}
-              genreId={movies[3].genre_ids[3]}
-              />
-              <MovieCard
-              movieId={movies[4].id}
-              posterPath= {movies[4].poster_path}
-              title= {movies[4].title}
-              votesAverage={movies[4].vote_average}
-              genreId={movies[4].genre_ids[4]}
-              />
-              <MovieCard
-              movieId={movies[5].id}
-              posterPath= {movies[5].poster_path}
-              title= {movies[5].title}
-              votesAverage={movies[5].vote_average}
-              genreId={movies[5].genre_ids[5]}
-              />
-              <MovieCard
-              movieId={movies[6].id}
-              posterPath= {movies[6].poster_path}
-              title= {movies[6].title}
-              votesAverage={movies[6].vote_average}
-              genreId={movies[6].genre_ids[6]}
-              />
-              
-          </div>
+              )
+              )}
+            </div>
         </div>
 
-        <p className='frC'>Most popular</p>
+        <p className='frC'>Upcoming</p>
         <div className='firstRow'>
             <div className='movieCardCon'>
-              <MovieCard
-              movieId={movies[0].id}
-              posterPath= {movies[0].poster_path}
-              title= {movies[0].title}
-              votesAverage={movies[0].vote_average}
-              genreId={movies[0].genre_ids[0]}
-              />
-              <MovieCard
-              movieId={movies[1].id}
-              posterPath= {movies[1].poster_path}
-              title= {movies[1].title}
-              votesAverage={movies[1].vote_average}
-              genreId={movies[1].genre_ids[1]}
-              />
-              <MovieCard
-              movieId={movies[2].id}
-              posterPath= {movies[2].poster_path}
-              title= {movies[2].title}
-              votesAverage={movies[2].vote_average}
-              genreId={movies[2].genre_ids[2]}
-              />
-              <MovieCard
-              movieId={movies[3].id}
-              posterPath= {movies[3].poster_path}
-              title= {movies[3].title}
-              votesAverage={movies[3].vote_average}
-              genreId={movies[3].genre_ids[3]}
-              />
-              <MovieCard
-              movieId={movies[4].id}
-              posterPath= {movies[4].poster_path}
-              title= {movies[4].title}
-              votesAverage={movies[4].vote_average}
-              genreId={movies[4].genre_ids[4]}
-              />
-              <MovieCard
-              movieId={movies[5].id}
-              posterPath= {movies[5].poster_path}
-              title= {movies[5].title}
-              votesAverage={movies[5].vote_average}
-              genreId={movies[5].genre_ids[5]}
-              />
-              <MovieCard
-              movieId={movies[6].id}
-              posterPath= {movies[6].poster_path}
-              title= {movies[6].title}
-              votesAverage={movies[6].vote_average}
-              genreId={movies[6].genre_ids[6]}
-              />
-              
+              {isLoading&&<div>Loading...</div>}
+                {moviesUpcoming?.length>0 &&
+                moviesUpcoming.map((moviesMain)=>(
+                <MovieCard
+                key={moviesMain.id}
+                movieId={moviesMain.id}
+                posterPath={moviesMain.poster_path}
+                title={moviesMain.title}
+                votesAverage={moviesMain.vote_average}
+                genreId={moviesMain.genre_ids[0]}
+                />
+                )
+                )}
+            </div>
           </div>
-        </div>
+
+          <p className='frC'>Top Rated</p>
+            <div className='firstRow'>
+                <div className='movieCardCon'>
+                  {isLoading&&<div>Loading...</div>}
+                    {moviesTopR?.length>0 &&
+                    moviesTopR.map((moviesMain)=>(
+                    <MovieCard
+                    key={moviesMain.id}
+                    movieId={moviesMain.id}
+                    posterPath={moviesMain.poster_path}
+                    title={moviesMain.title}
+                    votesAverage={moviesMain.vote_average}
+                    genreId={moviesMain.genre_ids[0]}
+                    />
+                    )
+                    )}
+                </div>
+              </div>
+
+
+              <p className='frC'>Now Playing</p>
+                <div className='firstRow'>
+                    <div className='movieCardCon'>
+                      {isLoading&&<div>Loading...</div>}
+                        {moviesMain?.length>0 &&
+                        moviesMain.map((moviesMain)=>(
+                        <MovieCard
+                        key={moviesMain.id}
+                        movieId={moviesMain.id}
+                        posterPath={moviesMain.poster_path}
+                        title={moviesMain.title}
+                        votesAverage={moviesMain.vote_average}
+                        genreId={moviesMain.genre_ids[0]}
+                        />
+                        )
+                        )}
+                    </div>
+                  </div>
 
 
       </div>

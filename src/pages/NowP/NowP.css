@@ -1,0 +1,9 @@
+.moviCardCon{
+    @apply flex-none
+}
+.background{
+    @apply bg-slate-600 bg-center object-center 
+}
+.row{
+    @apply  object-contain columns-1 my-auto ml-10
+}

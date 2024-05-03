@@ -1,16 +1,13 @@
 import React, { useEffect,useState } from "react";
-import { Pill } from '../../components/Pill';
-import { movies } from '../../constants/moviesMock';
-import {getPopular} from '../../services'
+import {getPopular} from '../../services';
 import { MovieCard } from "../../components/MovieCard";
-import { IMovieCard } from "../../components/MovieCard/types";
 import { IMovieResponse } from "./types";
+import './Popular.css';
 
 
 const Popular = () =>{
     const [movies, setMovies] = useState<IMovieResponse[]>([]);
     const [isLoading,setIsLoading]=useState<boolean>(false);
-    const [errorOnRequest,setErrorOnRequest]=useState<boolean>(false);
 
     const getPopularMovies = async () =>{
         await getPopular().then((data)=>{
@@ -30,11 +27,9 @@ const Popular = () =>{
     },[]);
 
     return(
-        <div className=" bg-slate-600 ">
-            <Pill title="Pill"/>
-            <Pill title="Reservations for two amigos"/>
-            <div className="anime">
-                <div className="overflow-x-auto flex-auto">
+        <div className=" background ">
+            <div className="row">
+                <div className="movieCardCon">
                     {isLoading&&<div>Loading...</div>}
                     {movies?.length>0 &&
                     movies.map((movie)=>(
@@ -50,9 +45,6 @@ const Popular = () =>{
                     )}
                 </div>
             </div>
-
-            
-            
         </div>
     );
 }

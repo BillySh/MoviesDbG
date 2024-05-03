@@ -1,9 +1,9 @@
 .navBar{
-    @apply bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800
+    @apply bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-900  shadow-inner
 }
 
 .button{
-    @apply block py-2 px-3 text-blue-500 items-end
+    @apply block py-2 px-3 text-blue-500 items-end bg-gray-800 rounded-full hover:opacity-50
 }
 
 .wrapper{
@@ -15,5 +15,11 @@
 }
 
 .title{
-    @apply font-bold text-blue-300 items-center py-2 px-3
+    @apply font-bold text-blue-300 items-center py-2 px-3 ml-3
+}
+
+
+
+.iconContainer{
+    @apply h-10 w-10 mr-2
 }

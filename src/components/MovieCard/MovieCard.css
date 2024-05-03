@@ -1,16 +1,16 @@
 .imageContainer{
-    @apply bg-black float-none
+    @apply  float-none  
 }
 
 .containerFull{
-    @apply  float-left  block relative mt-2 mr-0 mb-2 ml-2 flex-shrink rounded-t rounded-b h-2/4 shadow-md
+    @apply  float-left  block relative mt-2 mr-0 mb-2 ml-2 flex-shrink rounded-t rounded-b  shadow-md  
 }
 .image{
-    @apply  object-cover w-full h-full transform scale-100 transition-transform duration-500 ease-in-out hover:scale-110 
+    @apply      transition-opacity duration-500  hover:opacity-55  max-h-96   mx-0.5 rounded
 }
 
 .votes{
-    @apply    text-white text-lg font-bold 
+    @apply    text-white text-lg font-bold justify-center
 }
 
 .title{
@@ -21,5 +21,9 @@
     @apply   bg-blue-500 rounded text-white pt-2 pr-2 pb-2 pl-2 text-xs font-medium leading-3 mt-0 mr-0 mb-1 ml-0 table 
 }
 .textContainer{
-    @apply bg-gradient-to-t from-black via-gray-800 to-transparent bottom-0 left-0 w-full h-auto rounded-b-md absolute
+    @apply bg-gradient-to-t from-black caret-blue-500 to-transparent bottom-0 left-0 w-full h-auto rounded-b-md absolute text-xs pt-4 pr-3 pb-4 pl-3 table-cell align-middle
+}
+
+.star{
+    @apply w-1 h-1
 }
