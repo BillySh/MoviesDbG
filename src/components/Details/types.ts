@@ -4,6 +4,8 @@ export interface IDetails {
     original_language:     string;
     overview:              string;
     title:                 string;
+    poster_path:string;
+    genreId: number;
 }
 
 export interface Genre {

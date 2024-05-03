@@ -13,7 +13,7 @@ const meta = {
         docs:{
             story:{
                 inline: false,
-                description: "A MovieCarda component",
+                description: "A MovieCard component",
                 iframeHeight: 400,
             }
         }

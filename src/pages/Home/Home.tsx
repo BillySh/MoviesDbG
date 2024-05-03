@@ -86,8 +86,8 @@ const Home=() => {
             <img src="https://theregoesmykokoro.files.wordpress.com/2016/03/ogp.png" alt="..." />
             <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/11/flcl-featured-Cropped.jpg" alt="..." />
             <img src="https://www.gematsu.com/wp-content/uploads/2024/04/Mushoku-Tensei-QoM_04-16-24.jpg" alt="..." />
-            <img src="https://billyelliotthemusical.com/content/themes/billy-elliot-2016/build/images/hero-small1.jpg" alt="..." />
-            <img src="https://images3.alphacoders.com/132/1320392.jpeg" alt="..." />
+            <img src="https://dw9to29mmj727.cloudfront.net/promo/2016/5338-SeriesHeaders_Tier01_Punpun_2000x800v2.jpg" alt="..." />
+            <img src="https://images6.alphacoders.com/766/766800.jpg" alt="..." />
           </Carousel>
         </div>
         <br></br>

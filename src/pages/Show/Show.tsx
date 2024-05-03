@@ -3,15 +3,14 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
 import './Show.css'
 import {Details} from '../../components/Details';
-import { IMovieDetailsResponse } from "./types";
-import { getDetails } from "../../services";
+import { MovieCard } from "../../components/MovieCard";
+import { IMovieDetailsResponse,IMovieResponse } from "./types";
+import { getDetails,getRecomendations } from "../../services";
 
-interface ShowProps {
-    onIdChange: (id: string) => void; // Define a function to pass the id value
-}
 
 const ShowP:React.FC = () =>{
-    const [movies, setMovies] = useState<IMovieDetailsResponse[]>([]);
+    const [movies, setMovies] = useState<IMovieDetailsResponse>();
+    const [moviesRecomentaions, setRecomendations] =useState<IMovieResponse[]>([]);
     const [isLoading,setIsLoading]=useState<boolean>(false);
     const {id} =useParams();
     const stringId = id ? id.toString() : 'defaultId'; // Handle id being undefine
@@ -26,8 +25,19 @@ const ShowP:React.FC = () =>{
     const getMovieDetails = async () =>{
         await getDetails(stringId).then((data)=>{
             if (data && data.data){
-                console.log(data.data.source)
-                setMovies(data.data.results);
+                console.log(data.data, 'Details')
+                setMovies(data.data);
+            }
+        }).catch((err) =>{
+            console.log(err);//Algun fallo depende de que falló
+        })
+    };
+
+    const getMovieRecomendations = async () =>{
+        await getRecomendations(stringId).then((data)=>{
+            if (data && data.data){
+                console.log(data.data, 'Recomendations')
+                setRecomendations(data.data.results);
             }
         }).catch((err) =>{
             console.log(err);//Algun fallo depende de que falló
@@ -63,42 +73,63 @@ const ShowP:React.FC = () =>{
         }
         setIsLoading(true);
         getMovieDetails();
+        getMovieRecomendations();
         setIsLoading(false);
         //Aqui llamar el endpoint de los detalles de la pelicula
     }, [stringId]);
 
     return(
         <div className="containerD">
+            <div>
+            <br></br>
                 <div>
-                    <div>Show: {id}</div>
-                    <div>Titulo desde state: {location.state.movie}{id} </div>
-                    <div>
-                        {movies?.length>0 &&
-                            movies.map((movie)=>(
-                                        <Details
-                                        key={movie.id}
-                                        id={movie.id}
-                                        budget={movie.budget}
-                                        original_language={movie.original_language}
-                                        overview={movie.overview}
-                                        title={movie.title}
-                                        />
-                            )
+                    {movies && (
+                            <Details
+                            key={movies.id}
+                            id={movies.id}
+                            budget={movies.budget}
+                            original_language={movies.original_language}
+                            overview={movies.overview}
+                            title={movies.title}
+                            poster_path={movies.poster_path}
+                            genreId={movies.genres[0].id}
+                            />
                             )}
-                    </div>
-
-                    <button className="buttonSS" onClick={goBack} >Ir atras</button>
+                </div>
+                <br></br>
+                <div className="addBC">
+                    <button className="buttonSS" onClick={goBack} >Back</button>
                     {isFavorite?(
-                        <div className="p3 flex w-28 rounded-xl bg-slate-700">
-                            <button onClick={removeFavorite}>Remove to Favorite</button>
+                        <div >
+                            <button className="buttonRF" onClick={removeFavorite}> <img className="addIcon" src="https://cdn-icons-png.flaticon.com/512/985/985709.png" alt=""/>Remove from favorite</button>
                         </div>
                     ):(
-                        <div className="p3 flex w-28 rounded-xl bg-slate-700">
-                            <button onClick={addFavorite}>Add to Favorite</button>
+                        <div>
+                            <button className="buttonAF" onClick={addFavorite}> <img className="addIcon" src="https://cdn-icons-png.flaticon.com/512/985/985709.png" alt=""/>Add to favorites</button>
                         </div>
                     )}
                 </div>
             </div>
+            <p className='frC'>Recommended</p>
+                <div className='firstRow'>
+                    <div className='movieCardCon'>
+                    {isLoading&&<div>Loading...</div>}
+                    {moviesRecomentaions?.length>0 &&
+                    moviesRecomentaions.map((movie)=>(
+                    <MovieCard
+                    key={movie.id}
+                    movieId={movie.id}
+                    posterPath={movie.poster_path}
+                    title={movie.title}
+                    votesAverage={movie.vote_average}
+                    genreId={movie.genre_ids[0]}
+                    />
+                    )
+                    )}
+                </div>
+        </div>
+            
+        </div>
     );
 }
 

@@ -1,0 +1,43 @@
+.detailsContainer{
+    @apply bg-slate-50 shadow-lg my-auto ml-10 mr-10 rounded-md 
+}
+.imageContainer{
+    @apply float-none 
+}
+
+.data{
+    @apply bg-slate-200 border-solid flex  rounded-md shadow-xl
+}
+
+.dataStrings{
+    @apply grid-cols-3
+}
+
+.genreM{
+    @apply  my-3 p-3 flex w-fit rounded-xl bg-cyan-400 shadow-inner text-center  
+}
+.titleMovie{
+    @apply text-left text-3xl text-gray-950 font-extrabold my-3 
+}
+.image{
+    @apply mx-3 my-2
+}
+
+.original_languageM{
+    @apply flex w-fit bg-amber-500 shadow-inner text-center p-2 rounded-xl  
+}
+.pills{
+    @apply grid grid-flow-row
+}
+
+.budgedM{
+    @apply text-base font-medium my-2 text-teal-900 mx-1  
+}
+
+.overviewM{
+    @apply bg-slate-50 rounded-md flex-wrap mx-1 p-2 shadow-md
+}
+
+.imageM{
+    @apply   max-h-96   mx-2 rounded my-3 shadow-lg
+}

@@ -1,9 +1,29 @@
 .containerD{
-    @apply bg-neutral-900  w-full
+    @apply bg-slate-700  w-full
 }
 .movieContainer{
     @apply flex
 }
 .buttonSS{
-    @apply bg-cyan-100 text-center justify-center rounded-xl  h-10 px-1 py-2  my-5  flex min-w-16 max-w-40 font-normal 
+    @apply bg-cyan-100 justify-center rounded-xl    my-4  flex w-fit  font-normal p-3 text-center transition-opacity duration-500  hover:opacity-55
+}
+
+.buttonAF{
+    @apply p-3  w-fit  rounded-xl bg-cyan-400 shadow-inner my-2 grid content-center grid-flow-col transition-opacity duration-500  hover:opacity-55
+}
+
+.buttonRF{
+    @apply p-3 w-fit  rounded-xl bg-red-600 shadow-inner my-2 grid content-center grid-flow-col transition-opacity duration-500  hover:opacity-55
+}
+
+.firstRow{
+    @apply flex  overflow-x-auto shadow-inner 
+}
+
+.addBC{
+    @apply grid grid-rows-1 grid-flow-col mx-10 content-center
+}
+
+.addIcon{
+    @apply h-5 w-5 mx-1
 }

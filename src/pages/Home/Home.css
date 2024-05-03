@@ -1,9 +1,10 @@
 .movieCardCon{
-    @apply flex-none overflow-hidden
+    @apply flex-none 
 }
 
 .firstRow{
-    @apply flex  overflow-x-auto shadow-inner
+    @apply flex  overflow-x-auto  shadow-inner 
+   
 }
 
 .frC{
